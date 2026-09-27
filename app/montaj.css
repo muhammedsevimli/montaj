@@ -1,0 +1,186 @@
+/* Montaj · referans masası. Sayfaya özel jetonlar.
+   Renkler yalnız marka ikilisi (BRAND.md): olive-black #0E0E0C + cream #E9E2D2.
+   Vurgu rengi yok; seçim ve odak krem/siyah ters çevirmeyle taşınır.
+   Panel, kaydırıcı ve keyframe dili Toolcraft'tan (MIT, pixel-point) uyarlandı. */
+
+.mj {
+  --mj-canvas: #e4dccb;
+  --mj-panel: #efe9dc;
+  --mj-raise: #f8f4ec;
+  --mj-sunk: #ded5c2;
+  --mj-line: rgb(14 14 12 / 0.1);
+  --mj-line-strong: rgb(14 14 12 / 0.2);
+  --mj-ink: #0e0e0c;
+  --mj-ink-2: #4f4b43;
+  --mj-ink-3: #8a8479;
+  --mj-dot: rgb(14 14 12 / 0.13);
+  --mj-sel: #0e0e0c;
+  --mj-on-sel: #e9e2d2;
+  --mj-shadow: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 18px 40px -24px rgb(14 14 12 / 0.35);
+  --mj-negate: #8c3a32;
+  /* Claude'u temsil eden kil rengi (BRAND.md istisnası): yalnız Opus 5.5 işaretleri. */
+  --mj-claude: #d4744f;
+
+  font-family: var(--font-geist), var(--font-sans);
+  color: var(--mj-ink);
+  background: var(--mj-canvas);
+}
+
+html.dark .mj {
+  --mj-canvas: #0b0b0a;
+  --mj-panel: #141412;
+  --mj-raise: #1c1b18;
+  --mj-sunk: #0f0f0d;
+  --mj-line: rgb(233 226 210 / 0.08);
+  --mj-line-strong: rgb(233 226 210 / 0.17);
+  --mj-ink: #e9e2d2;
+  --mj-ink-2: #a39d90;
+  --mj-ink-3: #6b665c;
+  --mj-dot: rgb(233 226 210 / 0.09);
+  --mj-sel: #e9e2d2;
+  --mj-on-sel: #0e0e0c;
+  --mj-shadow: 0 1px 0 rgb(233 226 210 / 0.04) inset, 0 24px 48px -28px rgb(0 0 0 / 0.8);
+  --mj-negate: #c2695f;
+}
+
+.mj-mono {
+  font-family: var(--font-geist-mono), var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.mj-serif {
+  font-family: var(--font-serif);
+}
+
+.mj-dots {
+  background-color: var(--mj-canvas);
+  background-image: radial-gradient(var(--mj-dot) 1px, transparent 1.2px);
+  background-size: 18px 18px;
+  background-position: -9px -9px;
+}
+
+.mj-panel {
+  background: var(--mj-panel);
+  border: 1px solid var(--mj-line);
+  border-radius: 12px;
+  box-shadow: var(--mj-shadow);
+}
+
+.mj-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--mj-line-strong) transparent;
+}
+.mj-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.mj-scroll::-webkit-scrollbar-thumb {
+  background: var(--mj-line-strong);
+  border-radius: 999px;
+}
+.mj-noscroll {
+  scrollbar-width: none;
+}
+.mj-noscroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Kaydırıcı: ince hat, kare tutamak (Toolcraft slider dili). */
+.mj-range {
+  --fill: 50%;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  background: transparent;
+  cursor: pointer;
+}
+.mj-range:focus-visible {
+  outline: none;
+}
+.mj-range::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--mj-ink) var(--fill),
+    var(--mj-line-strong) var(--fill)
+  );
+}
+.mj-range::-moz-range-track {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--mj-line-strong);
+}
+.mj-range::-moz-range-progress {
+  height: 2px;
+  background: var(--mj-ink);
+}
+.mj-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  margin-top: -4px;
+  border-radius: 2px;
+  background: var(--mj-ink);
+  box-shadow: 0 0 0 3px var(--mj-panel);
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mj-range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--mj-ink);
+  box-shadow: 0 0 0 3px var(--mj-panel);
+}
+.mj-range:active::-webkit-slider-thumb,
+.mj-range:focus-visible::-webkit-slider-thumb {
+  transform: scale(1.35);
+}
+
+/* Renk seçici: kare örnek. */
+.mj-swatch {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--mj-line-strong);
+  border-radius: 6px;
+  background: none;
+  cursor: pointer;
+}
+.mj-swatch::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+.mj-swatch::-webkit-color-swatch {
+  border: 0;
+  border-radius: 4px;
+}
+.mj-swatch::-moz-color-swatch {
+  border: 0;
+  border-radius: 4px;
+}
+
+/* Adım zaman çizelgesinin işaret ettiği alan: adımın renginde, nefes alan halka. */
+[data-mj-odak="1"] {
+  position: relative;
+  outline: 1.5px solid var(--mj-odak-renk, var(--mj-ink));
+  outline-offset: 3px;
+  border-radius: 10px;
+  animation: mj-nefes 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes mj-nefes {
+  0%,
+  100% {
+    outline-color: var(--mj-odak-renk, var(--mj-ink));
+  }
+  50% {
+    outline-color: var(--mj-line-strong);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mj-odak="1"] {
+    animation: none;
+  }
+}

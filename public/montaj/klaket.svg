@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <mask id="govde">
+      <rect width="512" height="512" fill="#fff"/>
+      <path d="M76 214h56l-34 44H76z M162 214h60l-34 44h-60z M252 214h60l-34 44h-60z M342 214h60l-34 44h-60z M432 214h4v44h-62z" fill="#000"/>
+      <path d="M226 300l84 52-84 52z" fill="#000"/>
+    </mask>
+    <mask id="kapak">
+      <rect width="512" height="512" fill="#fff"/>
+      <path d="M92 140h56l-30 44H62z M180 140h60l-30 44h-60z M270 140h60l-30 44h-60z M360 140h60l-30 44h-60z" fill="#000"/>
+    </mask>
+  </defs>
+  <rect x="64" y="206" width="384" height="250" rx="18" fill="#e9e2d2" mask="url(#govde)"/>
+  <g transform="rotate(-14 64 196)">
+    <rect x="58" y="132" width="390" height="60" rx="12" fill="#e9e2d2" mask="url(#kapak)"/>
+  </g>
+  <circle cx="78" cy="196" r="14" fill="#e9e2d2"/>
+</svg>
